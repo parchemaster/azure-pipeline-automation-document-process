@@ -637,7 +637,7 @@ if __name__ == '__main__':
             # owner = readOwner(file)
             owner = "test"
             error_messages = []
-            convertPDF(file)
+            # convertPDF(file)
 
             if (is_Interny_doc_type("src/image_for_text_detection.jpg")):
                 main_test("src/cordinates_Interny.json", file_name)
