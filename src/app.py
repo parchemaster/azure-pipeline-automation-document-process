@@ -7,7 +7,7 @@ import traceback
 import cv2
 # import pypdfium2 as pdfium
 
-# from pdf2image import convert_from_path
+from pdf2image import convert_from_path
 import pytesseract
 import datetime
 import shutil
@@ -92,7 +92,7 @@ def write_csv_PO(csvName_path):
 
 
 def checkInDirPDF():
-    print(config_object["DIRECTION"]["InPath"])
+    # print(config_object["DIRECTION"]["InPath"])
     pdfs = []
     for filename in os.listdir(config_object["DIRECTION"]["InPath"]):
         split_filename = os.path.splitext(filename)
@@ -156,7 +156,7 @@ def createEmail(owner, text, pdf_path, csv_path):
         print("Error {e}: unable to send email\n")
 
 
-# def convertPDF(pdf_path):
+def convertPDF(pdf_path):
 
     # pdffile = pdf_path
     # doc = fitz.open(pdffile)
@@ -173,8 +173,8 @@ def createEmail(owner, text, pdf_path, csv_path):
     #     pix.save(val)
     # doc.close()
 
-    # images = convert_from_path(pdf_path)
-    # images[0].save("src/image_for_text_detection.jpg", 'JPEG')
+    images = convert_from_path(pdf_path)
+    images[0].save("src/image_for_text_detection.jpg", 'JPEG')
 
 
 def crop_invoice(file_name):
@@ -279,7 +279,7 @@ def deskew(im, max_skew=10):
 
 def remove_border(image_path):
     image = cv2.imread(image_path)
-    print(image)
+    # print(image)
     image = deskew(image)
     result = image.copy()
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -335,8 +335,8 @@ def write_possition_and_detect(name, im2, x, y, w, h, percentage_x, percentage_y
                     1, (255, 0, 0), 1, cv2.LINE_AA)
         with open(r"src/recognized.txt", "a", encoding="utf-8") as f:
             f.write(name + text)
-            print(name + text + " -X%: " + str(format(percentage_x, '.2f') + "  Y%: " + str(format(percentage_y, '.2f')
-                                                                                            ) + " -W%: " + str(format(percentage_width, '.2f')) + " -H%: " + str(format(percentage_height, '.2f'))))
+            # print(name + text + " -X%: " + str(format(percentage_x, '.2f') + "  Y%: " + str(format(percentage_y, '.2f')
+            #                                                                                 ) + " -W%: " + str(format(percentage_width, '.2f')) + " -H%: " + str(format(percentage_height, '.2f'))))
             f.write("\n")
         f.close
         return text
@@ -571,6 +571,14 @@ def main_test(json_path, file_name):
     if (len(ibans) == 2 and json_path == "src/cordinates_Interny.json"):
         ibanPrijemcu = ibans[0]
         ibanPlatitel = ibans[1]
+
+    print("iban sender: " + ibanPlatitel)
+    print("iban receiver: " + ibanPrijemcu)
+    print("receiver name " + nazovUctuPrij)
+    print("money amount: " + amount)
+
+    # print("")
+
     remove_duplicates_from_file("src/recognized.txt")
     cv2.imwrite('src/framed_result.png', im2)
     new_size = (700, 900)
@@ -629,7 +637,7 @@ if __name__ == '__main__':
             # owner = readOwner(file)
             owner = "test"
             error_messages = []
-            # convertPDF(file)
+            convertPDF(file)
 
             if (is_Interny_doc_type("src/image_for_text_detection.jpg")):
                 main_test("src/cordinates_Interny.json", file_name)
@@ -657,26 +665,26 @@ if __name__ == '__main__':
 
                 f.close
             # testing_SEPO(file_name)
-            if(len(error_messages) > 0):
-                moveToErrorDir(file, owner)
-                break
-            else:
-                isFile = True
-                while(isFile == True):
-                    csvName = createCSVName()
-                    csv_name_path = os.path.join(
-                        config_object["DIRECTION"]["OutPath"], csvName)
-                    isFile = os.path.isfile(csv_name_path)
-                    if(isFile == False):
-                        csv_name_path = os.path.join(
-                            config_object["DIRECTION"]["OutPath"] + "\\archiv", csvName)
-                        isFile = os.path.isfile(csv_name_path)
+            # if(len(error_messages) > 0):
+            #     moveToErrorDir(file, owner)
+            #     break
+            # else:
+            #     isFile = True
+            #     while(isFile == True):
+            #         csvName = createCSVName()
+            #         csv_name_path = os.path.join(
+            #             config_object["DIRECTION"]["OutPath"], csvName)
+            #         isFile = os.path.isfile(csv_name_path)
+            #         if(isFile == False):
+            #             csv_name_path = os.path.join(
+            #                 config_object["DIRECTION"]["OutPath"] + "\\archiv", csvName)
+            #             isFile = os.path.isfile(csv_name_path)
 
-                csv_name_path = os.path.join(
-                    config_object["DIRECTION"]["OutPath"], csvName)
-                write_csv_PO(csv_name_path)
-                moveToProcessedDir(file, csvName, owner, csv_name_path)
-                print("Prikaz bol zpracovany\n\n")
+            #     csv_name_path = os.path.join(
+            #         config_object["DIRECTION"]["OutPath"], csvName)
+            #     write_csv_PO(csv_name_path)
+            #     moveToProcessedDir(file, csvName, owner, csv_name_path)
+            #     print("Prikaz bol zpracovany\n\n")
 
     except Exception as e:
         print(e)
