@@ -1,0 +1,55 @@
+Back ofice a Platobné Služby 
+Pre spracovanie v programe je potrebné uložiť platobný príkaz vo formáte .pdf do priečinka J:\Scheduler\In.
+Pri ukladaní pdf súboru, program vygeneruje csv file do J:\IMPORT.
+
+
+IT
+Sú dve verzie program: prvá verzia je pre testovanie a druhá je produktívnu prevádzku. 
+Testovacia verzia je v priečinku C:\Users\sharai\Desktop\newScript.
+Pre spustenie programu je potrebné spustiť server.py, pridať pdf platobný príkaz do InPath. 
+Program má EventHandler, ktorý čaká na pdf file, keď dostane pdf do vyššie uvedeného priečinka, spustí spracovanie.
+Kroky:
+      1. Hľadá všetky pdf fíly | checkInDirPDF()
+      2. Pre každý file prečíta text z filu | text = page.extractText()
+      3. Nájde zamestnanca, ktorý poslal tento file na spracovanie | owner = readOwner(file)
+      4. Ak počas načítania dát došlo ku chybe prepošle file do priečinka ErrorPath, v opačnom prípade z textového súboru spracuje csv file | write_csv_PO(file, csv_name_path) | a presunie ho do priečinka ProcessedPath. Súčasne pošle aj oznam emailom, ak načítanie súboru prebehne bez chýb | createEmail(). 
+Ak by niekto chcel zmeniť program, je potrebné robiť úpravy v testovacom projekte ( programe ).. Ak testovanie zmien je bez chýb , je môžné vykonať zmeny aj v produkcii.
+Všetky priečinky sú definované v config.iní filu. config.iní tiež má automatické nastavený čas spustenia program. A čas konca program. Ak  program  otestovať , taktiež je potrbné dávať pozor na čas začiatku a konca.
+
+Popis programu:
+
+Názov programu: Facturio
+
+Účel programu: Program slúži na načítanie faktúr vo formáte PDF a extrahovanie požadovaných polí faktúry podľa ich polohy v súbore JSON. 
+Následne analyzuje tieto polia a výsledky uloží do súboru CSV.
+
+Použité technológie: Python, OpenCV, Tesseract
+
+Postup:
+Na začiatku program čaká na pdf v ceste. Ak užívateľ pretiahne pdf faktúru na cestu, program automaticky načíta všetky súbory v ceste.
+Následne sa načítaný pdf súbor skenuje pomocou knižnice OpenCV, aby sa identifikovali rôzne polia faktúry.
+Pozície týchto polí sa porovnávajú s pozíciami uloženými v súbore JSON, ktorý obsahuje informácie o pozíciách jednotlivých polí faktúry.
+Ak sú pozície správne, použije sa knižnica Tesseract na extrahovanie textu z týchto polí faktúry.
+Extrahovaný text sa analyzuje a informácie sa ukladajú do súboru CSV.
+Program informuje používateľa o výsledkoch a ukončí sa.
+
+Súbor JSON:
+Súbor JSON obsahuje informácie o pozíciách jednotlivých polí faktúry. 
+Napríklad, ak chcete nájsť dátum vystavenia faktúry, súbor JSON by mal obsahovať nasledujúce informácie:
+
+{
+      "percentage_x": 89,  "percentage_y": 3.3,  "percentage_width": 9.2,  "percentage_height": 2.1},
+      "iban1": {"percentage_x": 40.7,  "percentage_y": 12.7,  "percentage_width": 31.2,  "percentage_height": 2.1},
+      "iban2": {"percentage_x": 40.6,  "percentage_y": 20.9,  "percentage_width": 31.6,  "percentage_height": 2.1},
+      "name": {"percentage_x": 40.5,  "percentage_y": 28.2,  "percentage_width": 16.2,  "percentage_height": 2},
+      "suma": {"percentage_x": 54.12,  "percentage_y": 45.15,  "percentage_width": 10.6,  "percentage_height": 2.3},
+      "symbol": {"percentage_x": 25.12,  "percentage_y": 61.6,  "percentage_width": 10, "percentage_height": 2},
+      "info": {"percentage_x": 40.25,  "percentage_y": 78.2,  "percentage_width": 20.8, "percentage_height": 2.1
+}
+
+V tomto príklade "percentage_x" a "percentage_y" sú súradnice ľavého horného rohu obdĺžnika, ktorý obsahuje dátum vystavenia faktúry. 
+"percentage_width" a "percentage_height" sú šírka a výška tohto obdĺžnika.
+
+Dokumentácia k použitiu:
+Nainštalujte potrebné knižnice:
+Program vyžaduje knižnice OpenCV a Tesseract. Ich inštalácia sa môže líšiť podľa operačného systému, preto sa odkazujeme na

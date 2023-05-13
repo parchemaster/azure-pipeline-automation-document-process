@@ -1,0 +1,44 @@
+# Python package
+# Create and test a Python package on multiple Python versions.
+# Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/python
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.8'
+  displayName: 'Use Python 3.8'
+
+- script: |
+    python -m pip install --upgrade pip
+    pip install pdf2image
+    pip install numpy
+    pip install pandas
+    pip install opencv-python
+    pip install pdf2image
+    pip install python-poppler
+    pip install pytesseract
+    pip install frontend
+  displayName: 'Install dependencies'
+
+- script: |
+    pip install pytest pytest-azurepipelines
+    pytest
+  displayName: 'pytest'
+
+- script: |
+    sudo apt-get update
+    sudo apt-get install -y tesseract-ocr
+  displayName: 'Install Tesseract OCR'
+
+
+- script: |
+    python src/app.py
+  displayName: 'app running'
+

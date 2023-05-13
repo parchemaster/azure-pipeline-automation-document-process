@@ -1,0 +1,36 @@
+{
+    "models": [
+        {
+            "model_num": "1",
+            "date": {"percentage_x": 82.9,  "percentage_y": 4.4,  "percentage_width": 10.2,  "percentage_height": 2.1},
+            "iban1": {"percentage_x": 40.7,  "percentage_y": 12.7,  "percentage_width": 28.2,  "percentage_height": 2.1},
+            "iban2": {"percentage_x": 40.4,  "percentage_y": 20.9,  "percentage_width": 28.6,  "percentage_height": 2.1},
+            "name": {"percentage_x": 40.5,  "percentage_y": 29.2,  "percentage_width": 10.2,  "percentage_height": 2},
+            "suma": {"percentage_x": 54.12,  "percentage_y": 45.15,  "percentage_width": 10.6,  "percentage_height": 2.3},
+            "symbol": {"percentage_x": 25.12,  "percentage_y": 61.6,  "percentage_width": 10, "percentage_height": 2},
+            "info": {"percentage_x": 40.4,  "percentage_y": 78.2,  "percentage_width": 65.18, "percentage_height": 4.1}
+        },
+
+        {
+            "model_num": "2",
+            "date": {"percentage_x": 83.9,  "percentage_y": 4.6,  "percentage_width": 11.2,  "percentage_height": 2.1},
+            "iban1": {"percentage_x": 40.7,  "percentage_y": 12.7,  "percentage_width": 31.2,  "percentage_height": 2.1},
+            "iban2": {"percentage_x": 40.6,  "percentage_y": 20.9,  "percentage_width": 31.6,  "percentage_height": 2.1},
+            "name": {"percentage_x": 40.5,  "percentage_y": 28.2,  "percentage_width": 16.2,  "percentage_height": 2},
+            "suma": {"percentage_x": 54.12,  "percentage_y": 45.15,  "percentage_width": 10.6,  "percentage_height": 2.3},
+            "symbol": {"percentage_x": 25.12,  "percentage_y": 61.6,  "percentage_width": 10, "percentage_height": 2},
+            "info": {"percentage_x": 40.25,  "percentage_y": 78.2,  "percentage_width": 7.8, "percentage_height": 7}
+        },
+
+        {
+            "model_num": "3",
+            "date": {"percentage_x": 89,  "percentage_y": 3.3,  "percentage_width": 9.2,  "percentage_height": 2.1},
+            "iban1": {"percentage_x": 40.7,  "percentage_y": 12.7,  "percentage_width": 31.2,  "percentage_height": 2.1},
+            "iban2": {"percentage_x": 40.6,  "percentage_y": 20.9,  "percentage_width": 31.6,  "percentage_height": 2.1},
+            "name": {"percentage_x": 40.5,  "percentage_y": 28.2,  "percentage_width": 16.2,  "percentage_height": 2},
+            "suma": {"percentage_x": 54.12,  "percentage_y": 45.15,  "percentage_width": 10.6,  "percentage_height": 2.3},
+            "symbol": {"percentage_x": 25.12,  "percentage_y": 61.6,  "percentage_width": 10, "percentage_height": 2},
+            "info": {"percentage_x": 40.25,  "percentage_y": 78.2,  "percentage_width": 20.8, "percentage_height": 2.1}
+        }
+    ]
+}

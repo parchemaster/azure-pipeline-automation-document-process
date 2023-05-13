@@ -1,0 +1,14 @@
+{
+    "models": [
+        {
+            "model_num": "1",
+            "date": {"percentage_x": 76.19,  "percentage_y": 22.04,  "percentage_width": 8.6,  "percentage_height": 1.54},
+            "iban1": {"percentage_x": 43.07,  "percentage_y": 28.17,  "percentage_width": 22.26,  "percentage_height": 1.54},
+            "iban2": {"percentage_x": 42.8,  "percentage_y": 34.23,  "percentage_width": 22.56,  "percentage_height": 1.54},
+            "name": {"percentage_x": 42.9,  "percentage_y": 40.45,  "percentage_width": 7.99,  "percentage_height": 1.54},
+            "suma": {"percentage_x": 53.66,  "percentage_y": 52.27,  "percentage_width": 7.93,  "percentage_height": 1.7},
+            "symbol": {"percentage_x": 0,  "percentage_y": 0,  "percentage_width": 0, "percentage_height": 0},
+            "info": {"percentage_x": 0,  "percentage_y": 0,  "percentage_width": 0, "percentage_height": 0}
+        }
+    ]
+}

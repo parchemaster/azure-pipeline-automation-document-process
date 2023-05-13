@@ -1,0 +1,16 @@
+DATE	DAY	HOLIDAY
+1 January	sunday	Day of the Establishment of the Slovak Republic
+6 January	friday	Epiphany
+7 April	friday	Good Friday
+10 April	monday	Easter Monday
+1 May	monday	International Workers' Day
+8 May	monday	Day of victory over fascism
+5 July	wednesday	St. Cyril and Methodius Day
+29 August	tuesday	Slovak National Uprising Anniversary
+1 September	friday	Day of the Constitution of the Slovak Republic
+15 September	friday	Day of Our Lady of the Seven Sorrows, patron saint of Slovakia
+1 November	wednesday	All Saints’ Day
+17 November	friday	Struggle for Freedom and Democracy Day
+24 December	sunday	Christmas Eve
+25 December	monday	Christmas Day
+26 December	tuesday	St. Stephen's Day
